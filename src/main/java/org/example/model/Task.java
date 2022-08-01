@@ -1,11 +1,11 @@
 package org.example.model;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Collections;
-import java.util.List;
 
 @Entity
 @Table(name = "tasks")
@@ -15,7 +15,6 @@ import java.util.List;
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "task_seq",sequenceName = "task_seq",allocationSize = 1)
     private Long id;
     @Column(length = 35)
     private String name;

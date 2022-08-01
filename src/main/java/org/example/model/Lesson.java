@@ -13,18 +13,26 @@ import java.util.List;
 public class Lesson {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "lesson_seq",sequenceName = "lesson_seq",allocationSize = 1)
     private Long id;
     @Column(length = 30)
     private String name;
     @Column(name = "video_link",length = 35)
     private String videoLink;
-    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},
-            fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.PERSIST,
+            CascadeType.REFRESH},fetch = FetchType.EAGER)
     @JoinColumn(name = "course_id",nullable = false)
     private Course course;
-    @OneToMany(cascade = {CascadeType.DETACH,CascadeType.REMOVE,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},
-            fetch = FetchType.EAGER,mappedBy = "lesson")
+    @OneToMany(cascade = {
+            CascadeType.DETACH,
+            CascadeType.REMOVE,
+            CascadeType.MERGE,
+            CascadeType.PERSIST,
+            CascadeType.REFRESH},
+            fetch = FetchType.EAGER,
+            mappedBy = "lesson")
     private List<Task> task;
 
     public void addTask(Task newTask) {

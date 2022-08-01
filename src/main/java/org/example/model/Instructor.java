@@ -26,7 +26,12 @@ public class Instructor {
     private String email;
     @Column(name = "phone_number",length = 55,unique = true)
     private String phoneNumber;
-    @ManyToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.PERSIST,
+            CascadeType.REFRESH},
+            fetch = FetchType.EAGER)
     @JoinTable
     private List<Course> course = new ArrayList<>();
 

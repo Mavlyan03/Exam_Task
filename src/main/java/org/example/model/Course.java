@@ -1,7 +1,8 @@
 package org.example.model;
 
-import lombok.*;
-import org.hibernate.annotations.GeneratorType;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -30,7 +31,11 @@ public class  Course {
     @Column(unique = true)
     private String description;
 
-    @ManyToMany(mappedBy = "course",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @ManyToMany(mappedBy = "course",cascade = {
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.PERSIST,
+            CascadeType.REFRESH},fetch = FetchType.LAZY)
     private List<Instructor> instructors = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "course",fetch = FetchType.EAGER)
